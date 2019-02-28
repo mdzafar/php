@@ -22,10 +22,10 @@ if ($err) {
   echo "cURL Error #:" . $err;
 } else {
   echo $response;
-}
-/*Get Product Details*/
-$curl = curl_init();
-curl_setopt_array($curl, array(
+  /*Get Product Details*/
+  $authorization = "Authorization: Bearer ". $response->access_token; 
+  $curl = curl_init();
+  curl_setopt_array($curl, array(
   CURLOPT_URL => "https://lyons5-evaluation-dw.demandware.net/s/-/dw/data/v19_1/products/microsoft-xbox360-bundleM?expand=all&site_id=RefArch",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
@@ -35,16 +35,17 @@ curl_setopt_array($curl, array(
   CURLOPT_CUSTOMREQUEST => "GET",
   CURLOPT_POSTFIELDS => "",
   CURLOPT_HTTPHEADER => array(
-    "Authorization: Bearer $response",
+    $authorization,
     "Content-Type: application/json"
-  ),
-));
-$response = curl_exec($curl);
-$err = curl_error($curl);
-curl_close($curl);
-if ($err) {
-  echo "cURL Error #:" . $err;
-} else {
-  echo $response;
+    ),
+  ));
+  $response = curl_exec($curl);
+  $err = curl_error($curl);
+  curl_close($curl);
+  if ($err) {
+    echo "cURL Error #:" . $err;
+  } else {
+    echo $response;
+  }
 }
 ?>
