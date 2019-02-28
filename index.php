@@ -39,13 +39,15 @@ if ($err) {
     "Content-Type: application/json"
     ),
   ));
-  $response = curl_exec($curl);
+  $product_response = curl_exec($curl);
   $err = curl_error($curl);
   curl_close($curl);
   if ($err) {
     echo "cURL Error #:" . $err;
   } else {
-    echo $response;
+    header('Content-Type: application/json');
+    $json_pretty = json_encode(json_decode($product_response), JSON_PRETTY_PRINT);
+    echo $json_pretty;
   }
 }
 ?>
