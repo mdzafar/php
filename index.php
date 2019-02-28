@@ -1,3 +1,3 @@
 <?php
-Sample application
+echo "Sample application";
 ?>
