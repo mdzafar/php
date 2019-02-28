@@ -23,8 +23,7 @@ if ($err) {
 } else {
   $res = json_decode($response);
   /*Get Product Details*/
-  $authorization = "Authorization: Bearer ". $res->access_token; 
-  echo $authorization;
+  $authorization = "Authorization: Bearer ". $res->access_token;
   $curl = curl_init();
   curl_setopt_array($curl, array(
   CURLOPT_URL => "https://lyons5-evaluation-dw.demandware.net/s/-/dw/data/v19_1/products/microsoft-xbox360-bundleM?expand=all&site_id=RefArch",
